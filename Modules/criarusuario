@@ -1,6 +1,3 @@
-Certainly! Here's the modified script that uses the `service` command instead of `systemctl` and includes the `sudo` command where necessary:
-
-```bash
 #!/bin/bash
 #====================================================
 #	SCRIPT: SSHPLUS MANAGER CREATE USER ACCOUNT
