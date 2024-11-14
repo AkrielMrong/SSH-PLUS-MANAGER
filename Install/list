@@ -16,21 +16,21 @@ dpkg-reconfigure --frontend noninteractive tzdata >/dev/null 2>&1
 [[ -z $lst1 ]] && {
 	rm -rf $_Ink/list >/dev/null 2>&1 && cat /dev/null >~/.bash_history && history -c && exit 0
 }
-[[ ! -d /etc/SSHPlus ]] && mkdir /etc/SSHPlus
-[[ ! -d /etc/SSHPlus/senha ]] && mkdir /etc/SSHPlus/senha
-[[ ! -e /etc/SSHPlus/Exp ]] && touch /etc/SSHPlus/Exp
-[[ ! -d /etc/SSHPlus/userteste ]] && mkdir /etc/SSHPlus/userteste
-[[ ! -d /etc/SSHPlus/.tmp ]] && mkdir /etc/SSHPlus/.tmp
-[[ ! -d /etc/bot ]] && mkdir /etc/bot
-[[ ! -d /etc/bot/info-users ]] && mkdir /etc/bot/info-users
-[[ ! -d /etc/bot/arquivos ]] && mkdir /etc/bot/arquivos
-[[ ! -d /etc/bot/revenda ]] && mkdir /etc/bot/revenda
-[[ ! -d /etc/bot/suspensos ]] && mkdir /etc/bot/suspensos
-[[ ! -e /etc/bot/lista_ativos ]] && touch /etc/bot/lista_ativos
-[[ ! -e /etc/bot/lista_suspensos ]] && touch /etc/bot/lista_suspensos
+[[ ! -d /etc/SSHPlus ]] && sudo mkdir /etc/SSHPlus
+[[ ! -d /etc/SSHPlus/senha ]] && sudo mkdir /etc/SSHPlus/senha
+[[ ! -e /etc/SSHPlus/Exp ]] && sudo touch /etc/SSHPlus/Exp
+[[ ! -d /etc/SSHPlus/userteste ]] && sudo mkdir /etc/SSHPlus/userteste
+[[ ! -d /etc/SSHPlus/.tmp ]] && sudo mkdir /etc/SSHPlus/.tmp
+[[ ! -d /etc/bot ]] && sudo mkdir /etc/bot
+[[ ! -d /etc/bot/info-users ]] && sudo mkdir /etc/bot/info-users
+[[ ! -d /etc/bot/arquivos ]] && sudo mkdir /etc/bot/arquivos
+[[ ! -d /etc/bot/revenda ]] && sudo mkdir /etc/bot/revenda
+[[ ! -d /etc/bot/suspensos ]] && sudo mkdir /etc/bot/suspensos
+[[ ! -e /etc/bot/lista_ativos ]] && sudo touch /etc/bot/lista_ativos
+[[ ! -e /etc/bot/lista_suspensos ]] && sudo touch /etc/bot/lista_suspensos
 echo -e 'by: @CRAZY_VPN' >/usr/lib/sshplus && cat /usr/lib/sshplus >$lst2/licence && cat /usr/lib/sshplus > /etc/SSHPlus/.tmp/crazy
-netstat -nplt | grep -w 'apache2' | grep -w '80' && sed -i "s/Listen 80/Listen 81/g" /etc/apache2/ports.conf && service apache2 restart
-[[ "$(grep -o '#Port 22' /etc/ssh/sshd_config)" == "#Port 22" ]] && sed -i "s;#Port 22;Port 22;" /etc/ssh/sshd_config && service ssh restart
+netstat -nplt | grep -w 'apache2' | grep -w '80' && sed -i "s/Listen 80/Listen 81/g" /etc/apache2/ports.conf && sudo service apache2 restart
+[[ "$(grep -o '#Port 22' /etc/ssh/sshd_config)" == "#Port 22" ]] && sed -i "s;#Port 22;Port 22;" /etc/ssh/sshd_config && sudo service ssh restart
 grep -v "^PasswordAuthentication" /etc/ssh/sshd_config >/tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
 echo "PasswordAuthentication yes" >>/etc/ssh/sshd_config
 _dir1='/bin'
@@ -62,7 +62,7 @@ clear
 #AUTOMATIC START' >/etc/autostart
 	chmod +x /etc/autostart
 } || {
-	[[ $(ps x | grep "bot_plus" | grep -v grep | wc -l) != '0' ]] && wget -qO- https://raw.githubusercontent.com/jenbhie/SSH-PLUS-MANAGER/main/Install/ShellBot.sh >/etc/SSHPlus/ShellBot.sh
+	[[ $(ps x | grep "bot_plus" | grep -v grep | wc -l) != '0' ]] && wget -qO- https://raw.githubusercontent.com/AkrielMrong/SSH-PLUS-MANAGER/main/Install/ShellBot.sh >/etc/SSHPlus/ShellBot.sh
 	for proc in $(ps x | grep 'dmS' | grep -v 'grep' | awk {'print $1'}); do
 		screen -r -S "$proc" -X quit
 	done
@@ -70,7 +70,7 @@ clear
 	echo '#!/bin/bash
 clear
 #AUTOMATIC START' >/etc/autostart
-	chmod +x /etc/autostart
+	sudochmod +x /etc/autostart
 }
 crontab -r >/dev/null 2>&1
 (
@@ -83,7 +83,7 @@ crontab -r >/dev/null 2>&1
 echo "$_lvk" | sed -n '1 p' | cut -d' ' -f2 >/bin/version && cat /bin/version >/home/sshplus
 wget https://github.com/jenbhie/SSH-PLUS-MANAGER/raw/main/Install/jq-linux64 >/dev/null 2>&1
 chmod +x jq-linux64 && mv jq-linux64 $(which jq)
-service cron restart >/dev/null 2>&1
-service ssh restart >/dev/null 2>&1
-[[ -d /var/www/html/openvpn ]] && service apache2 restart >/dev/null 2>&1
-rm -rf $lst1/list >/dev/null 2>&1
+sudo service cron restart >/dev/null 2>&1
+sudo service ssh restart >/dev/null 2>&1
+[[ -d /var/www/html/openvpn ]] && sudo service apache2 restart >/dev/null 2>&1
+sudo rm -rf $lst1/list >/dev/null 2>&1
