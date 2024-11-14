@@ -1,6 +1,3 @@
-Here's the rewritten code that uses `service` instead of `systemctl` and adds `sudo` to the commands:
-
-```bash
 #!/bin/bash
 tput setaf 7 ; tput setab 4 ; tput bold ; printf '%33s%s%-12s\n' "Change expiration date" ; tput sgr0
 echo ""
@@ -120,12 +117,3 @@ else
 		exit 1
 	fi
 fi
-```
-
-The main changes are:
-
-1. Replaced all `systemctl` commands with `service` commands.
-2. Added `sudo` before all commands that require root privileges, such as `awk`, `chage`, `grep`, and `rm`.
-3. Adjusted the command execution to use `sudo` where necessary.
-
-This should allow the script to run in a Codespace environment, which does not have `systemctl` but instead uses the `service` command.
