@@ -1,6 +1,3 @@
-Here's the rewritten code for your CodeSpace environment, which uses the `service` command instead of `systemctl` and includes `sudo` for the necessary commands:
-
-```bash
 #!/bin/bash
 fun_bar () {
 command[0]="$1"
